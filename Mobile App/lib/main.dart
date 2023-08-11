@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'My First App'),
+      home: const MyActivity(title: 'My First App'),
     );
   }
 }
@@ -426,6 +426,134 @@ class _MyAccount extends State<MyAccount> {
     );
   }
 }
+
+class MyActivity extends StatefulWidget {
+  const MyActivity({Key? key, required this.title}) : super(key: key);
+  final String title;
+
+  @override
+  State<MyActivity> createState() => _MyActivityState();
+}
+
+class _MyActivityState extends State<MyActivity> {
+  int _currentIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            color: const Color(0xFFC45F5C),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 70),
+                  Container(
+                    width: double.infinity,
+                    child: const Text(
+                      "Activity Type",
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(height: 100),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Walking button
+                      Container(
+                        width: 320,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text("Walking", style: TextStyle(fontSize: 18)),
+                        ),
+                      ),
+                      SizedBox(height: 10), // Add spacing between buttons
+                      // Running button
+                      Container(
+                        width: 320,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text("Running", style: TextStyle(fontSize: 18)),
+                        ),
+                      ),
+                      SizedBox(height: 10), // Add spacing between buttons
+                      // Yoga button
+                      Container(
+                        width: 320,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text("Yoga", style: TextStyle(fontSize: 18)),
+                        ),
+                      ),
+                      SizedBox(height: 10), // Add spacing between buttons
+                      // Sports button
+                      Container(
+                        width: 320,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text("Sports", style: TextStyle(fontSize: 18)),
+                        ),
+                      ),
+                      SizedBox(height: 10), // Add spacing between buttons
+                      // Aerobic button
+                      Container(
+                        width: 320,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text("Aerobic", style: TextStyle(fontSize: 18)),
+                        ),
+                      ),
+                      SizedBox(height: 10), // Add spacing between buttons
+                      // Jumba button
+                      Container(
+                        width: 320,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text("Jumba", style: TextStyle(fontSize: 18)),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+          // ... (other Positioned widgets for buttons)
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_2),
+            label: 'Friends',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 
 
 
