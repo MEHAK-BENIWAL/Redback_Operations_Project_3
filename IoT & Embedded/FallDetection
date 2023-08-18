@@ -1,0 +1,40 @@
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_ADXL345_U.h>
+#define THRESHOLD 10.0  // Adjust this threshold based on your sensitivity needs
+#define THRESHOLD_X 2.0 // Adjust this threshold based on your requirements
+#define THRESHOLD_Y 2.0 // Adjust this threshold based on your requirements
+#define THRESHOLD_Z 10.0 // Adjust this threshold based on your requirements
+Adafruit_ADXL345_Unified accel = Adafruit_ADXL345_Unified(12345); // Change the address if necessary
+void setup(void) {
+  Serial.begin(9600);
+  Serial.println("Fall Detection Test");
+  if (!accel.begin()) {
+    Serial.println("Could not find a valid ADXL345 sensor, check wiring!");
+    while (1);
+  }
+}
+void setup(void) {
+  Serial.begin(9600);
+  
+  if(!accel.begin()) {
+    Serial.println("Could not find a valid ADXL345 sensor, check wiring!");
+    while(1);
+  }
+}
+void loop(void) {
+  sensors_event_t event;
+  accel.getEvent(&event);
+  
+  float accelerationX = event.acceleration.x;
+  float accelerationY = event.acceleration.y;
+  float accelerationZ = event.acceleration.z;
+
+  if (accelerationX > THRESHOLD_X || accelerationX < -THRESHOLD_X ||
+      accelerationY > THRESHOLD_Y || accelerationY < -THRESHOLD_Y ||
+      accelerationZ > THRESHOLD_Z || accelerationZ < -THRESHOLD_Z) {
+    Serial.println("Fall detected!");
+    // Perform actions here, such as sending alerts, etc.
+  }
+  delay(100); // Adjust the delay based on your requirements
+}
